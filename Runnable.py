@@ -23,6 +23,7 @@ square = RunnableLambda(lambda D: D**(1/2))
 main = RunnableLambda(solve_quadratic)
 output_size = RunnableLambda(lambda input: f"Для квадратного уравнения {sign(input['a'])}{abs(input['a'])}x²{sign(input['b'])}{abs(input['b'])}x{sign(input['c'])}{abs(input['c'])} Ответом является:\n{input['lamds']}")
 
+#В конце конечно можно было оставить словарь для дальнейшего использования, но я решил на этом остановиться и сделать красивый вывод
 discriminant = RunnablePassthrough.assign(lamds = RunnablePassthrough.assign(sqr_D = D | square) | main) | output_size
 
 
